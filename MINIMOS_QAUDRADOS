@@ -1,0 +1,47 @@
+#DISTANCIA 
+
+d(a,b) = sqrt((Xa - Xb)²+(Ya - Yb)²) ou d(a,b) = |Xa - Xb| + |Xa - Xb|
+
+
+-- achar o somatorio mais proximo da linha imaginaria 
+! Sempre vertical mas nao acha o ponto minino
+! Entao eleva ao quadrado pra achar a derivada
+!Pega a funcao
+
+
+%
+
+x= [0:10] ; entre 0  e 10
+y = exp(x/5)+1+rand(size(x)) ; Reta que eu tenho 
+
+
+A = [sum(x.*x) sum(x) ; sum(x) size(x,2)] ; MATRIZ 2 * 2 
+B = [sum(x.*y) ; sum(y) ]; MATRIZ SOLUCAO
+
+sol = A\B 
+
+a= sol(1,1);
+b= sol(2,1);
+
+plot(x,y,'*',x,a*x + b)
+
+
+Exemplo 2 :
+
+%%
+
+x= [0:10] ;
+y = 3*exp(x/5)+1+rand(size(x));
+
+
+
+
+A = [sum(x.*x) sum(x) ; sum(x) size(x,2)]
+B = [sum(x.*log(y));sum(log(y))]
+
+sol = A\B
+
+b= exp(sol(1,1));
+a= exp(sol(2,1));
+
+plot(x,y,'*',x,a*(b.^x))
